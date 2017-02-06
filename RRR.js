@@ -14,7 +14,24 @@ function getDoggy(){
 	}
 	return result;
 };
-function makeRandomEmail() {
+function makeRandomEmail(a,b,c,d,e) {
 	var result = '';
-	return result = getDogg
+
+	if(a!= null) {
+		result +=a;
+	}
+	if (b!=null) {
+		result+=b;
+	}
+	if (c!=null) {
+		result +=c;
+	}
+	if (d!=null) {
+		result += d;
+	}
+	if (e!=null) {
+		result +=e;
+	}
+	
+	return result;
 };

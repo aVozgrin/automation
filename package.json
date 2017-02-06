@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "selenium-webdriver": "^3.0.1",
+    "wdio-dot-reporter": "~0.4.x",
+    "wdio-mocha-framework": "^0.5.8",
+    "wdio-spec-reporter": "0.0.5"
+  }
+}
