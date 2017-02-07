@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "poplib": "^0.1.7",
     "selenium-webdriver": "^3.0.1",
     "wdio-dot-reporter": "~0.4.x",
     "wdio-mocha-framework": "^0.5.8",

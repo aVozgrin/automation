@@ -46,7 +46,6 @@ exports.config = {
         {browserName:'MicrosoftEdge'},
 
     ],
-    //
     // ===================
     // Test Configurations
     // ===================
