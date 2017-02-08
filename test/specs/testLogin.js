@@ -3,8 +3,6 @@ var assert = require('assert');
 var mainUrl = 'https://mip-dev.onlini.co/';
 var email = 'anton.vozghrin@onlini.co';
 var password = 'cometaChurumova75';
-
-
 function makeRandomString(){
     var result = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$&";
@@ -14,23 +12,31 @@ function makeRandomString(){
 
     return result;
 }
+
+function findErrorMessage(selector){
+				if(browser.isVisible(selector)){
+					return browser.getText(selector);
+				}
+				else {
+					findErrorMessage(selector);
+				}
+			};
+
 	describe('LOGIN TESTS', function() {
-		it('with incorrect password', function () {
+		beforeEach(function(){
 			browser.url(mainUrl); 
+		});
+		it('with incorrect password', function () {
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
 			emailField.setValue(email);
 			passwordField.setValue(makeRandomString()); 
 			loginButton.submitForm();
-			browser.waitForVisible('span*=Invalid'); 
-			var errorMessage = browser.element('span*=Invalid').getText(); 
+			var errorMessage = findErrorMessage('span*=Invalid');
 			assert.equal(errorMessage, 'Invalid login attempt.');
-			this.timeout(100000);
-
 		});
 		it('with empty password', function () {
-			browser.url(mainUrl);
 			var emailField = browser.element('[name="Email"]');
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]'); 
@@ -42,7 +48,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Password field is required.');
 		});
 		it('with empty email', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]');
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -54,7 +59,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Email field is required.');
 		});
 		it('with empty email and password', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]');
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -74,7 +78,6 @@ function makeRandomString(){
 			assert.deepEqual(errors, ['The Email field is required.','The Password field is required.']);
 		});
 		it('with email @asd.asd', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -86,7 +89,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Email field is not a valid e-mail address.'); 
 		});
 		it('with email asdasd.asd', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -98,7 +100,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Email field is not a valid e-mail address.'); 
 		});
 		it('with email asd@.asd', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -110,7 +111,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Email field is not a valid e-mail address.'); 
 		});
 		it('with email asd@asdasd', function () {
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -121,8 +121,7 @@ function makeRandomString(){
 			var errorMessage = browser.element('span*=The Email field is not a valid e-mail address.').getText(); 
 			assert.equal(errorMessage, 'The Email field is not a valid e-mail address.'); 
 		});
-		it('with email asd@asd.', function () {
-			browser.url(mainUrl); 
+		it('with email asd@asd.', function () { 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -134,7 +133,6 @@ function makeRandomString(){
 			assert.equal(errorMessage, 'The Email field is not a valid e-mail address.'); 
 		});
 		it('login', function(){
-			browser.url(mainUrl); 
 			var emailField = browser.element('[name="Email"]'); 
 			var passwordField = browser.element('[name="Password"]');
 			var loginButton = browser.element('[value="Log in"]');
@@ -144,14 +142,4 @@ function makeRandomString(){
 			var title = browser.getTitle();
 			assert.equal(title, 'Merchants');
 		});
-		it('change password', function(){
-			browser.url(mainUrl+='Manage/ChangePassword/'); 
-			var emailField = browser.element('[name="Email"]'); 
-			var passwordField = browser.element('[name="Password"]');
-			var loginButton = browser.element('[value="Log in"]');
-			emailField.setValue(email); 
-			passwordField.setValue(password);
-			loginButton.submitForm();
-		});
-
 });
