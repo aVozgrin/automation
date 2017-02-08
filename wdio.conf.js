@@ -32,20 +32,21 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 4,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [
-
-        {browserName:'chrome'},
-        {browserName:'firefox'},
-        {browserName:'internet explorer'},
-        {browserName:'MicrosoftEdge'},
-
-    ],
+    capabilities: [{
+        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+        // grid with only 5 firefox instances available you can make sure that not more than
+        // 5 instances get started at a time.
+        maxInstances: 5,
+        //
+        browserName: 'chrome'
+    }],
+    //
     // ===================
     // Test Configurations
     // ===================
@@ -117,8 +118,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['dot'],
-    
+    // reporters: ['dot'],
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/

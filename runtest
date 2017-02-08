@@ -1,0 +1,2 @@
+#!/bin/bash
+/home/waterkite/Documents/Automation/automation/node_modules/.bin/wdio
