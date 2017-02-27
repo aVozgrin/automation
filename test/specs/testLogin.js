@@ -216,7 +216,7 @@ describe('Test Merchants', function() {
 		(function (){
 			if (browser.getAttribute("[data-row-id='0']",'class') === 'active' ) {
 				var grid = $$('#gridMerchantsRowControls a');
-				
+
 			};
 			})();
 
