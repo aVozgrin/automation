@@ -1,2 +1,3 @@
 #!/bin/bash
-/home/waterkite/Documents/Automation/automation/node_modules/.bin/wdio
+echo "RUN TEST"
+./node_modules/.bin/wdio wdio.conf.js

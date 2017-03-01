@@ -1,2 +1,3 @@
 #!/bin/bash
-java -jar -Dwebdriver.gecko.driver=./geckodriver/geckodriver -Dwebdriver.chrome.driver=./chromedriver/chromedriver selenium-server-standalone-3.0.1.jar
+echo "SERVER STARTS"
+java -jar -Dwebdriver.chrome.driver=./linux/chromedriver ./server/selenium.jar
